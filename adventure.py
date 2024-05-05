@@ -139,7 +139,7 @@ class Engine:
             if len(self.inventory) > 0:
                 print("Inventory:")
                 for item in self.inventory:
-                    print(f"\t{item}")
+                    print(f"  {item}")
             else:
                 print("You're not carrying anything.")
             return
