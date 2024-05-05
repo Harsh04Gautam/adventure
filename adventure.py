@@ -19,14 +19,14 @@ class Engine:
         self.change_current_room(self.get_starting_room())
         while True:
             try:
-                i = input("What would you like to do? ").replace(" ", "").lower()
+                i = input("What would you like to do?").replace(" ", "").lower()
                 # quit
                 if i == "quit":
                     print("Goodbye!")
                     break
                 self.handle_input(i)
             except (EOFError):
-                print_err("\nUse 'quit' to exit.")
+                print("\nUse 'quit' to exit.")
 
     # helper methods
     def check_map_keys(self):
@@ -104,9 +104,9 @@ class Engine:
             direction = input[2:]
 
             if len(direction) == 0:
-                return print_err("Sorry, you need to 'go' somewhere.")
+                return print("Sorry, you need to 'go' somewhere.")
             if direction not in self.current_room["exits"]:
-                return print_err(f"There's no way to go {direction}.")
+                return print(f"There's no way to go {direction}.")
 
             destination = self.current_room["exits"][direction]
 
@@ -124,7 +124,7 @@ class Engine:
         if input.startswith("get"):
             item = input[3:]
             if len(item) == 0:
-                return print_err("Sorry, you need to 'get' something")
+                return print("Sorry, you need to 'get' something")
 
             if "items" in self.current_room and item in self.current_room["items"]:
                 self.inventory.append(item)
