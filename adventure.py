@@ -129,7 +129,7 @@ class Engine:
             if "items" in self.current_room and item in self.current_room["items"]:
                 self.inventory.append(item)
                 self.current_room["items"].remove(item)
-                print(f"you pick up the {item}.")
+                print(f"You pick up the {item}.")
             else:
                 print(f"There's no {item} anywhere.")
             return
