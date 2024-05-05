@@ -112,7 +112,7 @@ class Engine:
 
             for room in self.map["rooms"]:
                 if room["name"] == destination:
-                    print(f"You go {direction}.\n")
+                    print(f"\nYou go {direction}.\n")
                     self.change_current_room(room)
                     return
         # look
@@ -128,7 +128,7 @@ class Engine:
             if "items" in self.current_room and item in self.current_room["items"]:
                 self.inventory.append(item)
                 self.current_room["items"].remove(item)
-                print(f"you pick up the {item}.")
+                print(f"\nyou pick up the {item}.")
             else:
                 print_err(f"There's no {item} anywhere.")
             return
