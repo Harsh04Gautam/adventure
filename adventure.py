@@ -22,7 +22,7 @@ class Engine:
                 i = input("What would you like to do? ").replace(" ", "").lower()
                 # quit
                 if i == "quit":
-                    print("\nGoodbye!")
+                    print("Goodbye!")
                     break
                 self.handle_input(i)
             except (EOFError):
@@ -112,11 +112,12 @@ class Engine:
 
             for room in self.map["rooms"]:
                 if room["name"] == destination:
-                    print(f"\nYou go {direction}.\n")
+                    print(f"You go {direction}.\n")
                     self.change_current_room(room)
                     return
         # look
         if input == "look":
+            self.change_current_room(self.current_room)
             return
 
         # get
@@ -128,7 +129,7 @@ class Engine:
             if "items" in self.current_room and item in self.current_room["items"]:
                 self.inventory.append(item)
                 self.current_room["items"].remove(item)
-                print(f"\nyou pick up the {item}.")
+                print(f"you pick up the {item}.")
             else:
                 print_err(f"There's no {item} anywhere.")
             return
@@ -136,7 +137,7 @@ class Engine:
         # inventory
         if input == "inventory":
             if len(self.inventory) > 0:
-                print("\nInventory:")
+                print("Inventory:")
                 for item in self.inventory:
                     print(f"\t{item}")
             else:
