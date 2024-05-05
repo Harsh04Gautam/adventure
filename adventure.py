@@ -136,7 +136,7 @@ class Engine:
         # inventory
         if input == "inventory":
             if len(self.inventory) > 0:
-                print("Inventory:")
+                print("\nInventory:")
                 for item in self.inventory:
                     print(f"\t{item}")
             else:
