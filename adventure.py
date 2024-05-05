@@ -19,7 +19,7 @@ class Engine:
         self.change_current_room(self.get_starting_room())
         while True:
             try:
-                i = input("What would you like to do?").replace(" ", "").lower()
+                i = input("What would you like to do? ").replace(" ", "").lower()
                 # quit
                 if i == "quit":
                     print("Goodbye!")
@@ -131,7 +131,7 @@ class Engine:
                 self.current_room["items"].remove(item)
                 print(f"you pick up the {item}.")
             else:
-                print_err(f"There's no {item} anywhere.")
+                print(f"There's no {item} anywhere.")
             return
 
         # inventory
@@ -141,7 +141,7 @@ class Engine:
                 for item in self.inventory:
                     print(f"\t{item}")
             else:
-                print_err("You're not carrying anything.")
+                print("You're not carrying anything.")
             return
 
 
