@@ -22,7 +22,7 @@ class Engine:
                 i = input("What would you like to do? ").replace(" ", "").lower()
                 # quit
                 if i == "quit":
-                    print("Goodbye!")
+                    print("\nGoodbye!")
                     break
                 self.handle_input(i)
             except (EOFError):
