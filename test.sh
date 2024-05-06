@@ -15,18 +15,18 @@ fi
 echo -n "map validity "
 
 # checking map
-EMPTY_MAP_OUT=$(python adventure.py empty.map 2>&1)
+EMPTY_MAP_OUT=$(python adventure.py ./test_map/empty.map 2>&1)
 EMPTY__MAP_ERR="map is missing key: 'start', 'rooms'"
 
-INVALID_ROOM_OUT=$(python adventure.py invalid_room.map 2>&1)
+INVALID_ROOM_OUT=$(python adventure.py ./test_map/invalid_room.map 2>&1)
 INVALID_ROOM_ERR="room '1' is missing key: 'exits'
 room '3' is missing key: 'name', 'desc', 'exits'"
 
-DUPLICATE_NAME_OUT=$(python adventure.py duplicate_name.map 2>&1)
+DUPLICATE_NAME_OUT=$(python adventure.py ./test_map/duplicate_name.map 2>&1)
 DUPLICATE_NAME_ERR_1="duplicate room name: A white room, A blue room"
 DUPLICATE_NAME_ERR_2="duplicate room name: A blue room, A white room"
 
-INVALID_EXIT_OUT=$(python adventure.py invalid_exit.map 2>&1)
+INVALID_EXIT_OUT=$(python adventure.py ./test_map/invalid_exit.map 2>&1)
 INVALID_EXIT_ERR="invalid exit: A orange room, A black room"
 
 
@@ -42,7 +42,7 @@ fi
 
 echo -n "start room "
 
-CHECK_START_ROOM=$(python adventure.py invalid_start.map 2>&1)
+CHECK_START_ROOM=$(python adventure.py ./test_map/invalid_start.map 2>&1)
 CHECK_START_ERR="start room \"A orange room\" don't exist"
 
 if [ "$CHECK_START_ROOM" = "$CHECK_START_ERR" ]; then
