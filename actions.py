@@ -21,21 +21,19 @@ def go(self, input) -> None:
 
 
 def look(self, input):
-    if input == "look":
-        self.change_current_room(self.current_room)
-        return
+    self.change_current_room(self.current_room)
+    return
 
 
 def get(self, input):
-    if input.startswith("get"):
-        item = input[3:]
-        if len(item) == 0:
-            return print("Sorry, you need to 'get' something")
+    item = input[3:]
+    if len(item) == 0:
+        return print("Sorry, you need to 'get' something")
 
-        if "items" in self.current_room and item in self.current_room["items"]:
-            self.inventory.append(item)
-            self.current_room["items"].remove(item)
-            print(f"You pick up the {item}.")
-        else:
-            print(f"There's no {item} anywhere.")
-        return
+    if "items" in self.current_room and item in self.current_room["items"]:
+        self.inventory.append(item)
+        self.current_room["items"].remove(item)
+        print(f"You pick up the {item}.")
+    else:
+        print(f"There's no {item} anywhere.")
+    return
