@@ -1,5 +1,6 @@
 import sys
 import json
+import actions
 
 
 class Engine:
@@ -8,6 +9,7 @@ class Engine:
         self.room_names = set()
         self.current_room = {}
         self.inventory = []
+        self.verbs = {"go": actions.go, "look": actions.look, "get": actions.get}
 
         # check map
         self.check_map_keys()
@@ -99,46 +101,9 @@ class Engine:
         print(f"Exits: {' '.join(self.current_room['exits'].keys())}\n")
 
     def handle_input(self, input: str) -> None:
-        # go
-        if input.startswith("go"):
-            direction = input[2:]
-
-            if len(direction) == 0:
-                return print("Sorry, you need to 'go' somewhere.")
-            if direction not in self.current_room["exits"]:
-                return print(f"There's no way to go {direction}.")
-
-            destination = self.current_room["exits"][direction]
-
-            for room in self.map["rooms"]:
-                if room["name"] == destination:
-                    if "locked" in room:
-                        for item in room["locked"]:
-                            if item not in self.inventory:
-                                print(f"You need {', '.join(room['locked'])} to unlock the direction.")
-                                return
-                    print(f"You go {direction}.\n")
-                    self.change_current_room(room)
-                    return
-
-        # look
-        if input == "look":
-            self.change_current_room(self.current_room)
-            return
-
-        # get
-        if input.startswith("get"):
-            item = input[3:]
-            if len(item) == 0:
-                return print("Sorry, you need to 'get' something")
-
-            if "items" in self.current_room and item in self.current_room["items"]:
-                self.inventory.append(item)
-                self.current_room["items"].remove(item)
-                print(f"You pick up the {item}.")
-            else:
-                print(f"There's no {item} anywhere.")
-            return
+        for verb in self.verbs:
+            if input.startswith(verb):
+                self.verbs[verb](self, input)
 
         # inventory
         if input == "inventory":
